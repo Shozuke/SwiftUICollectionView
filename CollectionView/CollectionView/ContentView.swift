@@ -19,10 +19,12 @@ struct ContentView: View {
         NavigationView {
             List(collectionViewDataModel) { dataRow in
                 VStack {
-                    HeaderView(title: dataRow.name, actionTitle: self.actionTitle, destinationView: CellView(), font: Font.system(size: 18), color: .red)
+                    HeaderView(withTitle: dataRow.name, actionTitle: self.actionTitle, font: Font.system(size: 18), color: .red)
+//                    HeaderView(title: dataRow.name, actionTitle: self.actionTitle, destinationView: CellView(), font: Font.system(size: 18), color: .red)
                         .frame(height: 50)
                     HorizontalCollectionViewRow(modelData: dataRow.list)
                 }
+                
             }
             .navigationBarTitle("adsar")
             Spacer()
@@ -38,22 +40,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct HorizontalCollectionViewRow: View {
-    let modelData: [Data]
-    
-    var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(modelData, id: \.id) { data in
-                    
-                    CellView(data: data, cellFrame: CellFrame(width: 180, height: 246))
-                    
-                }
-                
-            }.padding(.bottom, 16)
-            Spacer()
-        }
-            
-        
-    }
-}
